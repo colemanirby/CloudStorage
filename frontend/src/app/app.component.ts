@@ -7,15 +7,6 @@ import {FrontendModel} from "./frontend.model";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'frontend';
-  response: FrontendModel;
-
-  constructor(private frontendApi: FrontendApiService){}
-
-  ngOnInit(): void {
-
-    this.frontendApi.getHelloWorld()
-      .subscribe((data: FrontendModel) => {this.response = data}, console.error);
-  }
 }
