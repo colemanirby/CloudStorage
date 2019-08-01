@@ -10,6 +10,7 @@ import {FrontendModel} from "./frontend.model";
 export class AppComponent implements OnInit{
   title = 'frontend';
   response: FrontendModel;
+
   constructor(private frontendApi: FrontendApiService){}
 
   ngOnInit(): void {

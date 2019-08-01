@@ -11,7 +11,7 @@ export class FrontendApiService {
   }
 
   getHelloWorld(): Observable<FrontendModel> {
-    return this.http.get<FrontendModel>('${API_URL}');
+    return this.http.get<FrontendModel>(API_URL);
   }
 
 
