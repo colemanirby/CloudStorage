@@ -1,7 +1,6 @@
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import 'rxjs/add/operator/catch';
 import {API_URL} from "./env";
 import {FrontendModel} from "./frontend.model";
 
