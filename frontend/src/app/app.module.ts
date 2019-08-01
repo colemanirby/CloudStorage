@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import {FrontendApiService} from "./frontend-api.service";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CustomMaterialModule} from "./core/material.module";
 import {FormsModule} from "@angular/forms";
@@ -17,7 +16,6 @@ import {HomeComponent} from "./home/home.module";
     AppComponent,
     LoginComponent,
     HomeComponent,
-    UserComponent
   ],
   imports: [
     BrowserModule,
