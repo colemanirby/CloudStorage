@@ -8,4 +8,4 @@ CORS(app)
 
 @app.route('/')
 def hello_world():
-    return 'hello world'
+    return {'response': 'hello world'}
