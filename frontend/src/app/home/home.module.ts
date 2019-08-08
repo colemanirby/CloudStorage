@@ -13,13 +13,13 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['name'];
 
   constructor(private frontendApi: FrontendApiService) {
-  }
-
-  ngOnInit(): void {
     this.frontendApi.getHelloWorld()
       .subscribe((data: FrontendModel) => {
         this.response = data;
       }, console.error);
+  }
+
+  ngOnInit(): void {
     console.log('Response: ' + this.response);
   }
 }
