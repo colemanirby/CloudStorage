@@ -1,8 +1,8 @@
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {API_URL} from "./env";
-import {FrontendModel} from "./frontend.model";
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {API_URL} from './env';
+import {FrontendModel} from './frontend.model';
 
 @Injectable()
 export class FrontendApiService {

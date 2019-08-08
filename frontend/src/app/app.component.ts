@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FrontendApiService} from "./frontend-api.service";
-import {FrontendModel} from "./frontend.model";
+import {FrontendApiService} from './frontend-api.service';
+import {FrontendModel} from './frontend.model';
 
 @Component({
   selector: 'app-root',

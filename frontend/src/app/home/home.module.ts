@@ -1,6 +1,6 @@
-import {FrontendApiService} from "../frontend-api.service";
-import {FrontendModel} from "../frontend.model";
-import {Component, OnInit} from "@angular/core";
+import {FrontendApiService} from '../frontend-api.service';
+import {FrontendModel} from '../frontend.model';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'home',
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.frontendApi.getHelloWorld()
       .subscribe((data: FrontendModel) => {
-        this.response = data
+        this.response = data;
       }, console.error);
   }
 }
