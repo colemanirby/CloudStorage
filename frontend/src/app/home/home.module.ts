@@ -2,6 +2,8 @@ import {FrontendApiService} from '../frontend-api.service';
 import {FrontendModel} from '../frontend.model';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
+import {MatTableDataSource} from "@angular/material";
+import {DirectoryModel} from "../directory.model";
 
 @Component({
   selector: 'home',
@@ -10,18 +12,19 @@ import {Subscription} from "rxjs";
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  responseSubscription: Subscription = this.frontendApi.getHelloWorld()
-      .subscribe((data: FrontendModel) => {
-        this.response = data;
-      }, console.error);
-  response: FrontendModel;
+  responseSubscription: Subscription;
+  dataSource = new MatTableDataSource<DirectoryModel>();
   displayedColumns: string[] = ['name'];
 
   constructor(private frontendApi: FrontendApiService) {
   }
 
   ngOnInit(): void {
-    console.log('Response: ' + this.response);
+    this.responseSubscription = this.frontendApi.getHelloWorld()
+      .subscribe((data: FrontendModel) => {
+        this.dataSource.data = data.directories;
+      }, console.error);
+    console.log('Response: ' + this.dataSource.data);
   }
   ngOnDestroy() {
     this.responseSubscription.unsubscribe();
