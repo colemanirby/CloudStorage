@@ -1,7 +1,6 @@
 import {FrontendApiService} from '../frontend-api.service';
 import {FrontendModel} from '../frontend.model';
 import {Component, OnInit} from '@angular/core';
-import {DirectoryModel} from "../directory.model";
 
 @Component({
   selector: 'home',
@@ -21,5 +20,6 @@ export class HomeComponent implements OnInit {
       .subscribe((data: FrontendModel) => {
         this.response = data;
       }, console.error);
+    console.log('Response: ' + this.response);
   }
 }
