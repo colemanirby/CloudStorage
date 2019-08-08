@@ -7,22 +7,12 @@ import {DirectoryModel} from "./directory.model";
 
 @Injectable()
 export class FrontendApiService {
-  promise: Promise<FrontendModel>;
-  response: DirectoryModel[];
   constructor(private http: HttpClient) {
 
   }
 
-  getHelloWorld(): void {
-    this.promise = new Promise<FrontendModel>((resolve, reject) => {
-       this.http.get<FrontendModel>(API_URL).subscribe(
-         data => {
-           this.response = data.directories;
-         }
-       );
-       console.log('got data: ' + this.response);
-       resolve();
-    });
+  getHelloWorld(): Observable<FrontendModel> {
+     return this.http.get<FrontendModel>(API_URL);
   }
 
 

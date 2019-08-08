@@ -9,7 +9,7 @@ import {DirectoryModel} from '../directory.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy{
+export class HomeComponent implements OnInit, OnDestroy {
   responseSubscription: Subscription;
   dataSource = new MatTableDataSource<DirectoryModel>();
   displayedColumns: string[] = ['name'];
@@ -17,12 +17,12 @@ export class HomeComponent implements OnInit, OnDestroy{
   constructor(private frontendApi: FrontendApiService) {
   }
 
-  async ngOnInit() {
-    await this.frontendApi.getHelloWorld();
-    this.dataSource.data = this.frontendApi.response;
+  ngOnInit(): void {
+    this.frontendApi.getHelloWorld().subscribe(data => {
+      this.dataSource.data = data.directories;
+    });
     console.log('Response: ' + JSON.stringify(this.dataSource.data));
   }
-
 
   ngOnDestroy() {
     this.responseSubscription.unsubscribe();
