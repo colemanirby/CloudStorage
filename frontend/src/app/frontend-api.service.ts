@@ -15,7 +15,11 @@ export class FrontendApiService {
 
   getHelloWorld(): void {
     this.promise = new Promise<FrontendModel>((resolve, reject) => {
-       this.http.get<FrontendModel>(API_URL).toPromise().then(data => this.response = data.directories);
+       this.http.get<FrontendModel>(API_URL).subscribe(
+         data => {
+           this.response = data.directories;
+         }
+       );
        console.log('got data: ' + this.response);
        resolve();
     });
