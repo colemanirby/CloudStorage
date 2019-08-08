@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((data: FrontendModel) => {
         this.dataSource.data = data.directories;
       }, console.error);
-    console.log('Response: ' + this.dataSource.data);
+    console.log('Response: ' + JSON.stringify(this.dataSource.data));
   }
   ngAfterViewInit() {
     console.log('Response after view: ' + this.dataSource.data);
