@@ -19,9 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.frontendApi.getHelloWorld().then(data => {
-      this.dataSource.data = data.directories;
-    });
+    this.dataSource.data = this.frontendApi.response;
     console.log('Response: ' + JSON.stringify(this.dataSource.data));
   }
 
