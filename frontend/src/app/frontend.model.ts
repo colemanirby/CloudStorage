@@ -1,5 +1,7 @@
+import {DirectoryModel} from './directory.model';
+
 export class FrontendModel {
   constructor(
-    public response: string[]
+    public directories: DirectoryModel[]
   ) {}
 }
