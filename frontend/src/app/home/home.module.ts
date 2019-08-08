@@ -10,7 +10,7 @@ import {DirectoryModel} from "../directory.model";
 })
 export class HomeComponent implements OnInit {
 
-  response: DirectoryModel[];
+  response: FrontendModel;
   displayedColumns: string[] = ['name'];
 
   constructor(private frontendApi: FrontendApiService) {
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.frontendApi.getHelloWorld()
       .subscribe((data: FrontendModel) => {
-        this.response = data.directories;
+        this.response = data;
       }, console.error);
   }
 }
