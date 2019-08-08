@@ -1,3 +1,3 @@
-export interface DirectoryModel {
+export class DirectoryModel {
   name: string;
 }

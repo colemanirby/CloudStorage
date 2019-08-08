@@ -1,5 +1,5 @@
 import {DirectoryModel} from './directory.model';
 
-export interface FrontendModel {
+export class FrontendModel {
   directories: DirectoryModel[];
 }
