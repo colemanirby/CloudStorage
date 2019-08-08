@@ -11,7 +11,6 @@ import {DirectoryModel} from '../directory.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   responseSubscription: Subscription;
   dataSource = new MatTableDataSource<DirectoryModel>();
   displayedColumns: string[] = ['name'];
@@ -20,11 +19,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.frontendApi.getHelloWorld().subscribe((data: FrontendModel) => {
+    this.frontendApi.getHelloWorld().then(data => {
       this.dataSource.data = data.directories;
     });
     console.log('Response: ' + JSON.stringify(this.dataSource.data));
   }
+
   ngOnDestroy() {
     this.responseSubscription.unsubscribe();
   }

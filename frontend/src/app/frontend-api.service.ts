@@ -10,8 +10,8 @@ export class FrontendApiService {
 
   }
 
-  getHelloWorld(): Observable<FrontendModel> {
-    return this.http.get<FrontendModel>(API_URL);
+  getHelloWorld(): Promise<FrontendModel> {
+    return this.http.get<FrontendModel>(API_URL).toPromise();
   }
 
 
