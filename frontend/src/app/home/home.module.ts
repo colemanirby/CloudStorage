@@ -10,7 +10,10 @@ import {Subscription} from "rxjs";
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  responseSubscription: Subscription;
+  responseSubscription: Subscription = this.frontendApi.getHelloWorld()
+      .subscribe((data: FrontendModel) => {
+        this.response = data;
+      }, console.error);
   response: FrontendModel;
   displayedColumns: string[] = ['name'];
 
@@ -18,10 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.responseSubscription = this.frontendApi.getHelloWorld()
-      .subscribe((data: FrontendModel) => {
-        this.response = data;
-      }, console.error);
     console.log('Response: ' + this.response);
   }
   ngOnDestroy() {
