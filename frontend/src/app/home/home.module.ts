@@ -1,6 +1,6 @@
 import {FrontendApiService} from '../frontend-api.service';
 import {FrontendModel} from '../frontend.model';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {MatTableDataSource} from "@angular/material";
 import {DirectoryModel} from "../directory.model";
@@ -10,7 +10,7 @@ import {DirectoryModel} from "../directory.model";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   responseSubscription: Subscription;
   dataSource = new MatTableDataSource<DirectoryModel>();
@@ -25,6 +25,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.dataSource.data = data.directories;
       }, console.error);
     console.log('Response: ' + this.dataSource.data);
+  }
+  ngAfterViewInit() {
+    console.log('Response after view: ' + this.dataSource.data);
   }
   ngOnDestroy() {
     this.responseSubscription.unsubscribe();
