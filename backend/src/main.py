@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_cors import CORS
 
@@ -7,5 +9,5 @@ CORS(app)
 
 
 @app.route('/')
-def hello_world():
-    return {'response': 'hello world'}
+def return_directories():
+    return next(os.walk('.'))[1]
