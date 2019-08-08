@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.callBackend();
     console.log('Response: ' + JSON.stringify(this.dataSource.data));
   }
-  callBackend() {
-    this.frontendApi.getHelloWorld().toPromise().then(data => this.dataSource.data = data.directories);
+  async callBackend() {
+    await this.frontendApi.getHelloWorld().toPromise().then(data => this.dataSource.data = data.directories);
   }
   ngAfterViewInit() {
     console.log('Response after view: ' + this.dataSource.data);
