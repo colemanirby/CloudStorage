@@ -13,13 +13,12 @@ export class FrontendApiService {
 
   }
 
-  getHelloWorld(): Promise<FrontendModel> {
+  getHelloWorld(): void {
     this.promise = new Promise<FrontendModel>((resolve, reject) => {
        this.http.get<FrontendModel>(API_URL).toPromise().then(data => this.response = data.directories);
        console.log('got data');
        resolve();
     });
-    return this.promise;
   }
 
 
