@@ -11,9 +11,25 @@
 
       <!-- Position Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Directory</th>
+        <th mat-header-cell *matHeaderCellDef> Current Directory</th>
         <td mat-cell *matCellDef="let directory"> {{directory.name}} </td>
       </ng-container>
+
+      <ng-container matColumnDef="directories">
+        <th mat-header-cell *matHeaderCellDef> Directories</th>
+        <td mat-cell *matCellDef="let directory">
+          <li *ngFor="let directory of directory.directories">{{directory.name}} </li>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="files">
+        <th mat-header-cell *matHeaderCellDef> Files</th>
+        <td mat-cell *matCellDef="let directory">
+          <li *ngFor="let file of directory.files">{{file.name}} </li>
+        </td>
+
+      </ng-container>
+
 
       <!-- Name Column -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

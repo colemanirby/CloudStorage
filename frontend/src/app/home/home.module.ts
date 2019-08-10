@@ -1,8 +1,8 @@
-import {FrontendApiService} from '../frontend-api.service';
+import {FrontendApiService} from '../services/frontend-api.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {MatTableDataSource} from '@angular/material';
-import {DirectoryModel} from '../directory.model';
+import {DirectoryModel} from '../models/directory.model';
 
 @Component({
   selector: 'home',
@@ -12,7 +12,7 @@ import {DirectoryModel} from '../directory.model';
 export class HomeComponent implements OnInit, OnDestroy {
   responseSubscription: Subscription;
   dataSource = new MatTableDataSource<DirectoryModel>();
-  displayedColumns: string[] = ['name'];
+  displayedColumns: string[] = ['name', 'directories', 'files'];
 
   constructor(private frontendApi: FrontendApiService) {
   }
