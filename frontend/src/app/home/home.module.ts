@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   thereAreFiles(): boolean {
-    return this.currentData.directories.length > 0;
+    return this.currentData.files.length > 0;
   }
 
 
