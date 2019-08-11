@@ -4,19 +4,22 @@
        src="assets/images/hedgehog-bird.jpg" class=image>
 
   <div *ngIf="dataLoaded">
-
     <mat-card>
-      <div *ngIf="thereIsPreviousData()">
-        <button mat-button class="header-buttons" (click)="returnHome()">Home</button>
-        <button mat-button class="header-buttons" (click)="openPreviousDirectory()">Previous Directory</button>
+      <div style="min-height: 69px">
+        <div *ngIf="thereIsPreviousData()">
+          <button mat-button class="header-buttons" (click)="returnHome()">Home</button>
+          <button mat-button class="header-buttons" (click)="openPreviousDirectory()">Previous Directory</button>
+        </div>
       </div>
 
       <mat-card-content class="header"><div style="font-size: large">{{name}}</div> {{getPath()}}</mat-card-content>
+    </mat-card>
 
+    <mat-card>
       <div>
         <div *ngIf="thereAreDirectories()">
           <div class="file-content">
-            <mat-card-content class="header">Child Directories</mat-card-content>
+            <mat-card-content class="header">Directories</mat-card-content>
             <mat-card-content>
               <button class="my-buttons" mat-button (click)="openNextDirectory(directory)"
                       *ngFor="let directory of currentData.directories">{{getDirectoryName(directory.name)}}</button>
@@ -26,18 +29,16 @@
 
         <div *ngIf="thereAreFiles()">
           <div class="file-content">
-            <mat-card-content class="header">Child Files</mat-card-content>
+            <mat-card-content class="header">Files</mat-card-content>
             <mat-card-content>
               <button mat-button class="my-buttons" *ngFor="let file of currentData.files">{{file.name}}</button>
             </mat-card-content>
           </div>
         </div>
-
-        <div class = "header" *ngIf="!(thereAreFiles()&&thereAreDirectories())">
-          Empty
-        </div>
+        <div class="header" *ngIf="!(thereAreFiles()&&thereAreDirectories())"> Empty</div>
       </div>
     </mat-card>
+
   </div>
 </div>
 <nav>
