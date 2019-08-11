@@ -11,7 +11,7 @@
         <button mat-button class="header-buttons" (click)="openPreviousDirectory()">Previous Directory</button>
       </div>
 
-      <mat-card-content class="header">{{name}}</mat-card-content>
+      <mat-card-content class="header"><div style="font-size: large">{{name}}</div> {{getPath()}}</mat-card-content>
 
       <div>
         <div *ngIf="thereAreDirectories()">
@@ -19,7 +19,7 @@
             <mat-card-content class="header">Child Directories</mat-card-content>
             <mat-card-content>
               <button class="my-buttons" mat-button (click)="openNextDirectory(directory)"
-                      *ngFor="let directory of currentData.directories">{{directory.name}}</button>
+                      *ngFor="let directory of currentData.directories">{{getDirectoryName(directory.name)}}</button>
             </mat-card-content>
           </div>
         </div>
