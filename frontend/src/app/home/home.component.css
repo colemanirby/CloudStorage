@@ -1,5 +1,38 @@
-table {
-  width: 80%;
+mat-card {
+  width: auto;
+  height: auto;
+  text-align: center;
+
+}
+
+.header {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.header-buttons {
+  border: inset darkgray;
+  margin: .2%;
+  text-align: center;
+  font-weight: bolder;
+
+}
+
+.image {
+  display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 19%;
+}
+
+.file-content {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.my-buttons {
+  border: inset darkgray;
+  margin: .2%;
 }

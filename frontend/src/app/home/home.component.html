@@ -1,40 +1,43 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <img width="300" alt="CloudLogo"
-       src="assets/images/hedgehog-bird.jpg">
+<div>
+  <img alt="CloudLogo"
+       src="assets/images/hedgehog-bird.jpg" class=image>
 
-  <div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <div *ngIf="dataLoaded">
 
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
+    <mat-card>
+      <div *ngIf="thereIsPreviousData()">
+        <button mat-button class="header-buttons" (click)="returnHome()">Home</button>
+        <button mat-button class="header-buttons" (click)="openPreviousDirectory()">Previous Directory</button>
+      </div>
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Current Directory</th>
-        <td mat-cell *matCellDef="let directory"> {{directory.name}} </td>
-      </ng-container>
+      <mat-card-content class="header">{{name}}</mat-card-content>
 
-      <ng-container matColumnDef="directories">
-        <th mat-header-cell *matHeaderCellDef> Directories</th>
-        <td mat-cell *matCellDef="let directory">
-          <li *ngFor="let directory of directory.directories">{{directory.name}} </li>
-        </td>
-      </ng-container>
+      <div>
+        <div *ngIf="thereAreDirectories()">
+          <div class="file-content">
+            <mat-card-content class="header">Child Directories</mat-card-content>
+            <mat-card-content>
+              <button class="my-buttons" mat-button (click)="openNextDirectory(directory)"
+                      *ngFor="let directory of currentData.directories">{{directory.name}}</button>
+            </mat-card-content>
+          </div>
+        </div>
 
-      <ng-container matColumnDef="files">
-        <th mat-header-cell *matHeaderCellDef> Files</th>
-        <td mat-cell *matCellDef="let directory">
-          <li *ngFor="let file of directory.files">{{file.name}} </li>
-        </td>
+        <div *ngIf="thereAreFiles()">
+          <div class="file-content">
+            <mat-card-content class="header">Child Files</mat-card-content>
+            <mat-card-content>
+              <button mat-button class="my-buttons" *ngFor="let file of currentData.files">{{file.name}}</button>
+            </mat-card-content>
+          </div>
+        </div>
 
-      </ng-container>
-
-
-      <!-- Name Column -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <div class = "header" *ngIf="!(thereAreFiles()&&thereAreDirectories())">
+          Empty
+        </div>
+      </div>
+    </mat-card>
   </div>
 </div>
 <nav>

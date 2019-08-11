@@ -1,7 +1,7 @@
 import {FileModel} from "./file.model";
 
-export class DirectoryModel {
+export class DirectoryButtonModel {
   name: string;
-  directories: DirectoryModel[];
+  directories: DirectoryButtonModel[];
   files: FileModel[];
 }

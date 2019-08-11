@@ -2,7 +2,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {API_URL} from '../env';
-import {DirectoryModel} from "../models/directory.model";
+import {DirectoryButtonModel} from "../models/directoryButtonModel";
 
 @Injectable()
 export class FrontendApiService {
@@ -10,8 +10,8 @@ export class FrontendApiService {
 
   }
 
-  getHelloWorld(): Observable<DirectoryModel> {
-     return this.http.get<DirectoryModel>(API_URL);
+  getHelloWorld(): Observable<DirectoryButtonModel> {
+     return this.http.get<DirectoryButtonModel>(API_URL);
   }
 
 
