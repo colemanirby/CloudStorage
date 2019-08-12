@@ -1,8 +1,9 @@
 import {FrontendApiService} from '../services/frontend-api.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {MatTableDataSource} from '@angular/material';
 import {DirectoryButtonModel} from '../models/directoryButtonModel';
+import {FileUploader} from 'ng2-file-upload';
+import {API_URL} from '../env';
 
 @Component({
   selector: 'home',
@@ -16,12 +17,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   previousData: DirectoryButtonModel[];
   name: string;
   dataLoaded = false;
+  public uploader: FileUploader = new FileUploader({url: API_URL + 'upload', itemAlias: 'file'});
 
   constructor(private frontendApi: FrontendApiService) {
   }
 
   ngOnInit(): void {
     this.previousData = [];
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded', item, status, response);
+      alert('File uploaded successfully');
+    };
     this.frontendApi.getHelloWorld().subscribe(data => {
       this.initialData = data;
       this.currentData = data;

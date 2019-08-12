@@ -9,6 +9,7 @@ verify_ssl = true
 flask = "*"
 marshmallow = "*"
 flask-cors = "*"
+opencv-contrib-python-headless = "*"
 
 [requires]
 python_version = "3.7"

@@ -5,10 +5,10 @@ from flask import Flask
 from flask_cors import CORS
 from src.backend_service import FileService
 
-
 app = Flask(__name__)
 CORS(app)
 file_service = FileService()
+
 
 @app.route('/')
 def return_directories():
@@ -19,7 +19,13 @@ def return_directories():
 
     tuplet = next(os_walk)
     json_response = file_service.populate_directories_object({}, tuplet, os_walk)
-    
+
     print('response:')
     print(json.dumps(json_response))
     return json.dumps(json_response)
+
+
+@app.route('/upload')
+def download_file(file):
+    print('file:')
+    print(file)

@@ -10,12 +10,14 @@ import {CustomMaterialModule} from './core/material.module';
 import {FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {HomeComponent} from './home/home.module';
+import {FileSelectDirective} from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
