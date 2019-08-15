@@ -39,6 +39,5 @@ def download_file():
     
     print('file.filename')
     file.save(save_file_path)
-    print('file')
-    print(file)
+
     return 'Submitted'
