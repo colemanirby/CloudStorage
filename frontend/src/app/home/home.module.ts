@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {DirectoryButtonModel} from '../models/directoryButtonModel';
 import {FileUploader} from 'ng2-file-upload';
 import {API_URL} from '../env';
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'home',
@@ -17,21 +18,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   previousData: DirectoryButtonModel[];
   name: string;
   dataLoaded = false;
-  public uploader: FileUploader = new FileUploader({url: API_URL + 'upload', itemAlias: 'file'});
+  form: FormGroup;
+  error: string;
+  uploadResponse = {status: '', message: '', filePath: ''};
 
-  constructor(private frontendApi: FrontendApiService) {
+  constructor(private frontendApi: FrontendApiService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.previousData = [];
-    this.uploader.onAfterAddingFile = (file) => {
-      file.withCredentials = false;
-    };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded', item, status, response);
-      alert('File uploaded successfully');
-    };
-    this.frontendApi.getHelloWorld().subscribe(data => {
+    this.form = this.formBuilder.group({
+      file: ['']
+    });
+    this.frontendApi.getFileStructure().subscribe(data => {
       this.initialData = data;
       this.currentData = data;
       this.previousData.push(data);
@@ -78,6 +77,23 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log(replaced);
       this.name = replaced;
     }
+  }
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.form.get('file').setValue(file);
+    }
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.form.get('file').value);
+
+    this.frontendApi.upload(formData).subscribe(
+      (res) => this.uploadResponse = res,
+      (err) => this.error = err
+    );
   }
 
   getDirectoryName(directoryName: string): string {

@@ -3,14 +3,30 @@
   <img alt="CloudLogo"
        src="assets/images/hedgehog-bird.jpg" class=image>
 
-  <div class="container">
-    <input type="file" name="photo" ng2FileSelect [uploader]="uploader"/>
-    <button type="button" class="btn btn-success btn-s"
-            (click)="uploader.uploadAll()"
-            [disabled]="!uploader.getNotUploadedItems().length">
-      Upload File
-    </button>
+  <h1>Upload your File!</h1>
+<div>
+  <div *ngIf="error">
+    {{ error.message }}
   </div>
+  <div *ngIf="uploadResponse.status === 'error'">
+    {{ uploadResponse.message }}
+  </div>
+  <div *ngIf="uploadResponse.status === 'progress'">
+
+
+    <div role="progressbar" [style.width.%]="uploadResponse.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+      {{uploadResponse.message}}%
+    </div>
+
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <input type="file" name="avatar" (change)="onFileChange($event)" />
+    <button type="submit">Upload</button>
+
+  </form>
+</div>
 
   <div *ngIf="dataLoaded">
     <mat-card>
