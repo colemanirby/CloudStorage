@@ -5,7 +5,6 @@ import logging
 from flask import Flask
 from flask import request
 from flask_cors import CORS
-from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 from src.backend_service import FileService
 
 app = Flask(__name__)
@@ -30,6 +29,16 @@ def return_directories():
 
 @app.route('/upload', methods = ['POST'])
 def download_file():
-    print(request)
-    print(request.files)
+    file = request.files['file']
+    path = request.form['path']
+    fileName = file.filename
+    
+    save_file_path = path + '/' + fileName
+    print('saving file to')
+    print(path)
+    
+    print('file.filename')
+    file.save(save_file_path)
+    print('file')
+    print(file)
     return 'Submitted'
