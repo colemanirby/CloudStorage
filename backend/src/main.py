@@ -1,8 +1,11 @@
 import os
 import json
+import logging
 
 from flask import Flask
+from flask import request
 from flask_cors import CORS
+from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 from src.backend_service import FileService
 
 app = Flask(__name__)
@@ -10,7 +13,7 @@ CORS(app)
 file_service = FileService()
 
 
-@app.route('/')
+@app.route('/', methods = ['GET'])
 def return_directories():
     """For each directory in the directory tree rooted at top (including top
         itself, but excluding '.' and '..'), yields a 3-tuple
@@ -25,7 +28,8 @@ def return_directories():
     return json.dumps(json_response)
 
 
-@app.route('/upload')
-def download_file(file):
-    print('file:')
-    print(file)
+@app.route('/upload', methods = ['POST'])
+def download_file():
+    print(request)
+    print(request.files)
+    return 'Submitted'
