@@ -89,6 +89,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.form.get('file').value);
+    formData.append('path', this.currentData.name);
 
     this.frontendApi.upload(formData).subscribe(
       (res) => this.uploadResponse = res,
