@@ -12,7 +12,7 @@ CORS(app)
 file_service = FileService()
 
 
-@app.route('/', methods = ['GET'])
+@app.route('/', methods=['GET'])
 def return_directories():
     """For each directory in the directory tree rooted at top (including top
         itself, but excluding '.' and '..'), yields a 3-tuple
@@ -27,7 +27,7 @@ def return_directories():
     return json.dumps(json_response)
 
 
-@app.route('/upload', methods = ['POST'])
+@app.route('/upload', methods=['POST'])
 def download_file():
     file = request.files['file']
     path = request.form['path']
