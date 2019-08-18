@@ -43,7 +43,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   downloadFile(filename: string) {
     console.log('Current directory name:');
     console.log(this.currentData.name);
-    const num = this.currentData.name.split('/').length - 2;
+
+    // need to change how this is done since I don't know how the new names will be presented
+    const num = this.currentData.name.split('/').length - 2 > 1 ? 1 : 0;
     let relativePath = this.currentData.name.replace('./../backend', '');
     console.log('first pass');
     console.log(relativePath);
