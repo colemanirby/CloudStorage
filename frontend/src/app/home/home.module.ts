@@ -48,6 +48,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log('first pass');
     console.log(relativePath);
     relativePath = relativePath.replace(/\//g, '&');
+    if (relativePath.length === 0) {
+      relativePath = '&';
+    }
     console.log('second pass');
     console.log(relativePath);
     this.frontendApi.callDownloadFile(relativePath, num, filename);
