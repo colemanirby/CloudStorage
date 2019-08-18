@@ -40,6 +40,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  downloadFile() {
+    this.frontendApi.downloadFile().subscribe(data => {
+      console.log('success at download call');
+    });
+  }
+
   openNextDirectory(directory: DirectoryButtonModel): void {
 
     const indexOfDirectory = this.currentData.directories.indexOf(directory);

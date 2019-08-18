@@ -1,4 +1,4 @@
-import {HttpClient, HttpErrorResponse, HttpEventType} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpEventType, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {API_URL} from '../env';
@@ -32,6 +32,13 @@ export class FrontendApiService {
           return 'Unhandle event: ${event.type}';
       }
     }));
+  }
+
+  downloadFile() {
+    console.log('calling download at');
+    const downloadUrl = API_URL + 'download';
+    console.log(downloadUrl);
+    return this.http.get(downloadUrl);
   }
 
 
