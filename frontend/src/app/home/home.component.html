@@ -28,9 +28,6 @@
 
     </form>
   </div>
-  <button (click)="downloadFile()">
-    Download
-  </button>
 
   <div *ngIf="dataLoaded">
     <mat-card>
@@ -62,7 +59,8 @@
           <div class="file-content">
             <mat-card-content class="header">Files</mat-card-content>
             <mat-card-content>
-              <button mat-button class="my-buttons" *ngFor="let file of currentData.files">{{file.name}}</button>
+              <button mat-button class="my-buttons" (click)="downloadFile(file.name)" *ngFor="let file of currentData.files">{{file.name}}</button>
+
             </mat-card-content>
           </div>
         </div>

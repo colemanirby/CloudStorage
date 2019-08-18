@@ -34,11 +34,25 @@ export class FrontendApiService {
     }));
   }
 
-  downloadFile() {
+  callDownloadFile(path: string, num: number,  filename: string) {
     console.log('calling download at');
-    const downloadUrl = API_URL + 'download';
+    console.log('path: ' + path);
+    console.log('filename: ' + filename);
+    const downloadUrl = API_URL + 'download/' + path + '/' + num + '/' + filename;
     console.log(downloadUrl);
-    return this.http.get(downloadUrl);
+    this.http.get(downloadUrl, {
+        responseType: 'arraybuffer'
+      }
+    ).subscribe(response => this.downloadFile(response, 'application/octet-stream'));
+  }
+
+  downloadFile(data: any, type: string) {
+    const blob = new Blob([data], {type});
+    const url = window.URL.createObjectURL(blob);
+    const pwa = window.open(url);
+    if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+      alert('Please disable your Pop-up blocker and try again.');
+    }
   }
 
 

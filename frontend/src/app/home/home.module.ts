@@ -4,7 +4,7 @@ import {Subscription} from 'rxjs';
 import {DirectoryButtonModel} from '../models/directoryButtonModel';
 import {FileUploader} from 'ng2-file-upload';
 import {API_URL} from '../env';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'home',
@@ -40,10 +40,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  downloadFile() {
-    this.frontendApi.downloadFile().subscribe(data => {
-      console.log('success at download call');
-    });
+  downloadFile(filename: string) {
+    console.log('Current directory name:');
+    console.log(this.currentData.name);
+    const num = this.currentData.name.split('/').length - 2;
+    let relativePath = this.currentData.name.replace('./../backend', '');
+    console.log('first pass');
+    console.log(relativePath);
+    relativePath = relativePath.replace(/\//g, '&');
+    console.log('second pass');
+    console.log(relativePath);
+    this.frontendApi.callDownloadFile(relativePath, num, filename);
   }
 
   openNextDirectory(directory: DirectoryButtonModel): void {
