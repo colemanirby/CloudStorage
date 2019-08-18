@@ -41,3 +41,7 @@ def download_file():
     file.save(save_file_path)
 
     return 'Submitted'
+
+@app.route('/download', methods=['GET'])
+def upload_file():
+    return 'Here ya go'
