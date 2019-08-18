@@ -3,7 +3,7 @@ import json
 import logging
 
 from flask import Flask
-from flask import request
+from flask import request, send_from_directory
 from flask_cors import CORS
 from src.backend_service import FileService
 
@@ -42,6 +42,23 @@ def download_file():
 
     return 'Submitted'
 
-@app.route('/download', methods=['GET'])
-def upload_file():
-    return 'Here ya go'
+@app.route('/download/<string:path>/<string:number>/<string:filename>', methods=['GET'])
+def upload_file(path, number, filename):
+    print('received Request')
+    finalPath = path.replace('&', '/')
+    print('finalPath ----: ')
+    print(finalPath)
+    current_directory = os.getcwd()
+    print('current working directory')
+    print(current_directory)
+    itNumber = int(number)
+    if itNumber > 1:
+        finalPath = current_directory + finalPath
+        print('This should be final path:')
+        print(finalPath)
+    else:
+        finalPath = current_directory
+    print('finalPath is')
+    print(finalPath)
+
+    return send_from_directory(directory=finalPath, filename=filename)
