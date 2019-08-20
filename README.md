@@ -23,8 +23,8 @@ the raspberrypi__
 ## UI setup (PC and Raspberry Pi)
 Navigate to frontend directory and run the following:
 ```
-Run npm install
-Run npm start
+npm install
+npm start
 ```
 
 
